@@ -46,7 +46,7 @@ odoo.define('checkout_address_tr_fields.address_fields', function(require) {
                             var $option = $('<option>').text(x[1])
                                 .attr('value', x[0]);
                             $nextEl.append($option);
-                            if (resModel === 'address.region') {
+                            if (resModel === 'address.neighbour') {
                                 $current_el.closest(".row").find(".div_city").find('input').val($current_el.find(
                                     "option:selected").text());
 

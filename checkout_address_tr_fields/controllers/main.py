@@ -16,7 +16,7 @@ class WebsiteSaleInherit(WebsiteSale):
         """
         adres bilgilerini alırken kullandığımız base controller
         """
-        address_models = ["address.district", "address.region", "address.neighbour"]
+        address_models = ["address.district", "address.neighbour"]
 
         vals = {"values": []}
         # domain = [('country_id', '=', 224)]  # Turkey
@@ -26,11 +26,8 @@ class WebsiteSaleInherit(WebsiteSale):
             if res_model == "address.district":
                 domain = [("state_id", "=", res_id)]
 
-            elif res_model == "address.region":
-                domain = [("district_id", "=", res_id)]
-
             elif res_model == "address.neighbour":
-                domain = [("region_id", "=", res_id)]
+                domain = [("district_id", "=", res_id)]
 
             res = http.request.env[res_model].search(domain)
             # sorted_dstr = sorted(districts, key=lambda x: x.name)
@@ -60,13 +57,6 @@ class WebsiteSaleInherit(WebsiteSale):
         ):
             error["district_id"] = "error"
             error_msg.append(_("Please select a district."))
-
-        if not (
-            all_form_values.get("region_id")
-            and all_form_values.get("region_id").isdigit()
-        ):
-            error["region_id"] = "error"
-            error_msg.append(_("Please select a region."))
 
         if not (
             all_form_values.get("neighbour_id")
@@ -105,16 +95,10 @@ class WebsiteSaleInherit(WebsiteSale):
                 if vals.get("district_id") and vals.get("district_id").isdigit()
                 else False
             )
-            region_id = (
-                int(vals["region_id"])
-                if vals.get("region_id") and vals.get("region_id").isdigit()
-                else False
-            )
 
         else:
             state_id = vals.state_id.id
             district_id = vals.district_id.id
-            region_id = vals.region_id.id
 
         if state_id:
             res.update(
@@ -128,17 +112,8 @@ class WebsiteSaleInherit(WebsiteSale):
         if district_id:
             res.update(
                 {
-                    "regions": http.request.env["address.region"].search(
-                        [("district_id", "=", district_id)]
-                    )
-                }
-            )
-
-        if region_id:
-            res.update(
-                {
                     "neighbours": http.request.env["address.neighbour"].search(
-                        [("region_id", "=", region_id)]
+                        [("district_id", "=", district_id)]
                     )
                 }
             )
