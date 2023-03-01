@@ -28,11 +28,6 @@ Odoo'nun e-ticaret uzantısında yer alan sipariş verme ekranına, Türkiye'de 
 Bağımlılıklar
 ~~~~~~~
 
-YAPILACAKLAR
-~~~~~~~
-
-* Alanların gizlenip açılması iyileştirilecek.
-* Form ekranında düzenleme yapılarak etkisiz alanlar kaldırılacak.
 
 Geliştiriciler
 ~~~~~~~
