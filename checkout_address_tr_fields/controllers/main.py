@@ -43,27 +43,28 @@ class WebsiteSaleInherit(WebsiteSale):
         error, error_msg = super(WebsiteSaleInherit, self).checkout_form_validate(
             mode, all_form_values, data
         )
+        country_id = int(all_form_values.get("country_id", 0))
+        if country_id == 224:  # Turkey
+            if not (
+                all_form_values.get("state_id")
+                and all_form_values.get("state_id").isdigit()
+            ):
+                error["state_id"] = "error"
+                error_msg.append(_("Please select a state."))
 
-        if not (
-            all_form_values.get("state_id")
-            and all_form_values.get("state_id").isdigit()
-        ):
-            error["state_id"] = "error"
-            error_msg.append(_("Please select a state."))
+            if not (
+                all_form_values.get("district_id")
+                and all_form_values.get("district_id").isdigit()
+            ):
+                error["district_id"] = "error"
+                error_msg.append(_("Please select a district."))
 
-        if not (
-            all_form_values.get("district_id")
-            and all_form_values.get("district_id").isdigit()
-        ):
-            error["district_id"] = "error"
-            error_msg.append(_("Please select a district."))
-
-        if not (
-            all_form_values.get("neighbour_id")
-            and all_form_values.get("neighbour_id").isdigit()
-        ):
-            error["neighbour_id"] = "error"
-            error_msg.append(_("Please select a neighbour."))
+            if not (
+                all_form_values.get("neighbour_id")
+                and all_form_values.get("neighbour_id").isdigit()
+            ):
+                error["neighbour_id"] = "error"
+                error_msg.append(_("Please select a neighbour."))
 
         return error, error_msg
 

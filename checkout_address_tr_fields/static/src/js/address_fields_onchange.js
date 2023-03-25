@@ -10,6 +10,7 @@ odoo.define('checkout_address_tr_fields.address_fields', function(require) {
         cartHandlerMixin, {
             selector: '.oe_website_sale',
             events: _.extend({}, VariantMixin.events || {}, {
+                'change select[name="country_id"]': '_onChangeCountryCheckTurkey',
                 'change select[name="state_id"]': '_onChangeCountryState',
                 'change select[name="district_id"]': '_onChangeDistrict',
                 'change select[name="region_id"]': '_onChangeRegion',
@@ -29,11 +30,15 @@ odoo.define('checkout_address_tr_fields.address_fields', function(require) {
             _changeAddressFields: function($current_el) {
                 var resModel = $current_el.data('res-model');
                 var $nextEl = false;
-                _.each($current_el.closest("div").nextAll('div').not('.w-100'), function(el, idx) {
+                _.each($current_el.closest("div").nextAll('.tr_address_field'), function(el, idx) {
                     let $select = $(el).find('select');
                     if (idx === 0) {
                         resModel = $select.attr('model');
                         $nextEl = $select;
+                        el.style.display = 'block';
+                    }
+                    else {
+                        el.style.display = 'none';
                     }
                     $select.empty().append('<option value="" disabled selected>' + _t('Select...') + '</option>');
                 });
@@ -59,12 +64,32 @@ odoo.define('checkout_address_tr_fields.address_fields', function(require) {
              * @private
              * @param {Event} ev
              */
+            _onChangeCountryCheckTurkey: function(ev) {
+                if (!this.$('.checkout_autoformat').length) {
+                    return;
+                }
+                let $current_el = $(ev.currentTarget);
+                if ($current_el.val() !== '224') { // 224 is Turkey
+                    // find all tr_address_field divs and hide them
+                    _.each($current_el.closest("div").nextAll('.tr_address_field'), function (el, idx) {
+                            el.style.display = 'none';
+                        }
+                    );
+                }
+            },
+            /**
+             * @private
+             * @param {Event} ev
+             */
             _onChangeCountryState: function(ev) {
                 if (!this.$('.checkout_autoformat').length) {
                     return;
                 }
                 var $current_el = $(ev.currentTarget);
-                this._changeAddressFields($current_el);
+                let $country_select = $("select[id='country_id']");
+                if ($country_select.length && $country_select.val() === '224'){ // 224 is Turkey
+                    this._changeAddressFields($current_el);
+                }
             },
 
             /**
