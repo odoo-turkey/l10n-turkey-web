@@ -120,3 +120,19 @@ class WebsiteSaleInherit(WebsiteSale):
             )
 
         return res
+
+    def _checkout_form_save(self, mode, checkout, all_values):
+        """
+        Since we don't include `semt` field in checkout form, we need to
+        manually set the value of `semt` field to `partner` object.
+        """
+        res = super()._checkout_form_save(mode, checkout, all_values)
+        if res:
+            partner = http.request.env["res.partner"].browse(res)
+            if partner and partner.neighbour_id:
+                partner.sudo().write(
+                    {
+                        "region_id": partner.neighbour_id.region_id.id,
+                    }
+                )
+        return res
