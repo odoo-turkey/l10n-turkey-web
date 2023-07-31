@@ -68,6 +68,13 @@ class WebsiteSaleInherit(WebsiteSale):
 
         return error, error_msg
 
+    @http.route(
+        ['/shop/country_infos/<model("res.country"):country>'],
+        type="json",
+        auth="public",
+        methods=["POST"],
+        website=True,
+    )
     def country_infos(self, country, mode, **kw):
         """
         state seçiminin direkt olarak seçili gelmesini engeller. seçiniz diye boş option ekler
