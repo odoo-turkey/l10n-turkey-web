@@ -43,8 +43,8 @@ class WebsiteSaleInherit(WebsiteSale):
         error, error_msg = super(WebsiteSaleInherit, self).checkout_form_validate(
             mode, all_form_values, data
         )
-        country_id = int(all_form_values.get("country_id", 0))
-        if country_id == 224:  # Turkey
+        country_id = all_form_values.get("country_id", 0)
+        if country_id.isnumeric() and int(country_id) == 224:  # Turkey
             if not (
                 all_form_values.get("state_id")
                 and all_form_values.get("state_id").isdigit()
@@ -68,6 +68,13 @@ class WebsiteSaleInherit(WebsiteSale):
 
         return error, error_msg
 
+    @http.route(
+        ['/shop/country_infos/<model("res.country"):country>'],
+        type="json",
+        auth="public",
+        methods=["POST"],
+        website=True,
+    )
     def country_infos(self, country, mode, **kw):
         """
         state seçiminin direkt olarak seçili gelmesini engeller. seçiniz diye boş option ekler
