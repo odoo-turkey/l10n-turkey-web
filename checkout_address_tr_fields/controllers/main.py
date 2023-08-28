@@ -45,6 +45,13 @@ class WebsiteSaleInherit(WebsiteSale):
         )
         country_id = all_form_values.get("country_id", 0)
         if country_id.isnumeric() and int(country_id) == 224:  # Turkey
+
+            # Since we use another address fields for Turkey, it's okey to not
+            # validate city.
+            if error.get("city"):
+                error.pop("city")
+                error_msg = []
+
             if not (
                 all_form_values.get("state_id")
                 and all_form_values.get("state_id").isdigit()
@@ -140,6 +147,7 @@ class WebsiteSaleInherit(WebsiteSale):
                 partner.sudo().write(
                     {
                         "region_id": partner.neighbour_id.region_id.id,
+                        "city": partner.neighbour_id.region_id.district_id.name,
                     }
                 )
         return res
