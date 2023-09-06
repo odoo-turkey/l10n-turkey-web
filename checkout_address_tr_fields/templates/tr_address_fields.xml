@@ -11,6 +11,10 @@
             <attribute name="t-attf-class">mb-3 #{error.get('city') and 'o_has_error' or ''} col-md-8 div_city d-none</attribute>
         </xpath>
 
+        <!-- Show VAT alert, NOTE: This VAT check functionality is related on another module -->
+        <xpath expr="//div[contains(@t-attf-class, 'div_vat')]" position="inside">
+            <small t-if="not checkout['vat']" class="form-text text-muted d-block">*You can also write 11 pieces of 1.</small>
+        </xpath>
 
 
         <!-- Add address fields -->
