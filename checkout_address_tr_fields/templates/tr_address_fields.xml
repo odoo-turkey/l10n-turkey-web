@@ -13,8 +13,7 @@
 
         <!-- Show VAT alert, NOTE: This VAT check functionality is related on another module -->
         <xpath expr="//div[contains(@t-attf-class, 'div_vat')]" position="inside">
-            <small t-if="not checkout['vat']" class="form-text text-muted d-block">*You can also write 11 pieces of 1.</small>
-
+            <small t-if="not checkout['vat']" class="form-text text-muted d-block">*You can fill 11111111111 if not applicable.</small>
         </xpath>
 
 <!--        &lt;!&ndash; Add Tax Office &ndash;&gt;-->

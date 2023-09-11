@@ -6,14 +6,19 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-06 12:19+0000\n"
-"PO-Revision-Date: 2023-09-06 12:19+0000\n"
+"POT-Creation-Date: 2023-09-11 13:55+0000\n"
+"PO-Revision-Date: 2023-09-11 13:55+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
+
+#. module: checkout_address_tr_fields
+#: model_terms:ir.ui.view,arch_db:checkout_address_tr_fields.layout_tr_address_fields
+msgid "*You can fill 11111111111 if not applicable."
+msgstr "*Paylaşmak istemiyorsanız 11111111111 doldurun."
 
 #. module: checkout_address_tr_fields
 #: model_terms:ir.ui.view,arch_db:checkout_address_tr_fields.layout_tr_address_fields
@@ -41,25 +46,30 @@ msgid "Neighbour"
 msgstr "Mahalle"
 
 #. module: checkout_address_tr_fields
+#: model:ir.model,name:checkout_address_tr_fields.model_address_neighbour
+msgid "Neighbourhood"
+msgstr "Mahalle"
+
+#. module: checkout_address_tr_fields
 #. odoo-python
 #: code:addons/checkout_address_tr_fields/controllers/main.py:0
 #, python-format
 msgid "Please select a district."
-msgstr "Lütfen bir ilçe seçiniz."
+msgstr "Lütfen bir ilçe seçin."
 
 #. module: checkout_address_tr_fields
 #. odoo-python
 #: code:addons/checkout_address_tr_fields/controllers/main.py:0
 #, python-format
 msgid "Please select a neighbour."
-msgstr "Lütfen bir mahalle seçiniz."
+msgstr "Lütfen bir mahalle seçin."
 
 #. module: checkout_address_tr_fields
 #. odoo-python
 #: code:addons/checkout_address_tr_fields/controllers/main.py:0
 #, python-format
 msgid "Please select a state."
-msgstr "Lütfen bir il seçiniz."
+msgstr "Lütfen bir il seçin."
 
 #. module: checkout_address_tr_fields
 #. odoo-javascript
@@ -68,4 +78,4 @@ msgstr "Lütfen bir il seçiniz."
 #: code:addons/checkout_address_tr_fields/static/src/js/address_fields_onchange.js:0
 #, python-format
 msgid "Select..."
-msgstr "Seçiniz..."
+msgstr "Seçin..."
