@@ -52,6 +52,12 @@ class WebsiteSaleInherit(WebsiteSale):
                 error.pop("city")
                 error_msg = []
 
+            if all_form_values.get("company_name") and not all_form_values.get(
+                "tax_office_name"
+            ):
+                error["tax_office_name"] = "error"
+                error_msg.append(_("Please enter tax office name."))
+
             if not (
                 all_form_values.get("state_id")
                 and all_form_values.get("state_id").isdigit()
