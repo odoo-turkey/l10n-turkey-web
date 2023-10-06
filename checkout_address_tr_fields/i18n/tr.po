@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Odoo Server 16.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2023-09-11 13:55+0000\n"
-"PO-Revision-Date: 2023-09-11 13:55+0000\n"
+"POT-Creation-Date: 2023-10-06 11:05+0000\n"
+"PO-Revision-Date: 2023-10-06 11:05+0000\n"
 "Last-Translator: \n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
@@ -15,10 +15,6 @@ msgstr ""
 "Content-Transfer-Encoding: \n"
 "Plural-Forms: \n"
 
-#. module: checkout_address_tr_fields
-#: model_terms:ir.ui.view,arch_db:checkout_address_tr_fields.layout_tr_address_fields
-msgid "*You can fill 11111111111 if not applicable."
-msgstr "*Paylaşmak istemiyorsanız 11111111111 doldurun."
 
 #. module: checkout_address_tr_fields
 #: model_terms:ir.ui.view,arch_db:checkout_address_tr_fields.layout_tr_address_fields
@@ -79,3 +75,10 @@ msgstr "Lütfen bir il seçin."
 #, python-format
 msgid "Select..."
 msgstr "Seçin..."
+
+#. module: checkout_address_tr_fields
+#. odoo-python
+#: code:addons/checkout_address_tr_fields/controllers/main.py:0
+#, python-format
+msgid "The tax office field is mandatory for companies."
+msgstr "Vergi dairesi alanı şirketler için zorunludur."
