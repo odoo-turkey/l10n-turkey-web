@@ -56,7 +56,7 @@ class WebsiteSaleInherit(WebsiteSale):
                 "tax_office_name"
             ):
                 error["tax_office_name"] = "error"
-                error_msg.append(_("Please enter tax office name."))
+                error_msg.append(_("The tax office field is mandatory for companies."))
 
             if not (
                 all_form_values.get("state_id")
