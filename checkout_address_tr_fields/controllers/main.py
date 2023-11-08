@@ -52,8 +52,10 @@ class WebsiteSaleInherit(WebsiteSale):
                 error.pop("city")
                 error_msg = []
 
-            if all_form_values.get("company_name") and not all_form_values.get(
-                "tax_office_name"
+            if (
+                all_form_values.get("company_name")
+                and (all_form_values.get("vat") and len(all_form_values["vat"]) == 10)
+                and not all_form_values.get("tax_office_name")
             ):
                 error["tax_office_name"] = "error"
                 error_msg.append(_("The tax office field is mandatory for companies."))
