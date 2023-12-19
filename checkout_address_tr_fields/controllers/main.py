@@ -43,10 +43,10 @@ class WebsiteSaleInherit(WebsiteSale):
         error, error_msg = super(WebsiteSaleInherit, self).checkout_form_validate(
             mode, all_form_values, data
         )
-        country_id = all_form_values.get("country_id", 0)
+        country_id = all_form_values.get("country_id", "0")
         if country_id.isnumeric() and int(country_id) == 224:  # Turkey
 
-            # Since we use another address fields for Turkey, it's okey to not
+            # Since we use another address fields for Turkey, it's okay to not
             # validate city.
             if error.get("city"):
                 error.pop("city")
