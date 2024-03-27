@@ -159,3 +159,23 @@ class WebsiteSaleInherit(WebsiteSale):
                     }
                 )
         return res
+
+    def _get_mandatory_fields_billing(self, country_id=False):
+        """
+        Adds TR checkout fields to mandatory fields on billing address
+        """
+        req = super()._get_mandatory_fields_billing(country_id)
+        if country_id == 224:
+            req.append("district_id")
+            req.append("neighbour_id")
+        return req
+
+    def _get_mandatory_fields_shipping(self, country_id=False):
+        """
+        Adds TR checkout fields to mandatory fields on shipping address
+        """
+        req = super()._get_mandatory_fields_shipping(country_id)
+        if country_id == 224:
+            req.append("district_id")
+            req.append("neighbour_id")
+        return req
